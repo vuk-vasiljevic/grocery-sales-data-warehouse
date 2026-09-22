@@ -1,0 +1,1016 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2025 1:19:14 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JFP7O2Q"
+  DTS:CreatorName="DESKTOP-JFP7O2Q\vanja"
+  DTS:DTSID="{DA1247FA-A63A-4187-9529-5DF5ADE246C2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{35417DAF-0C93-40BD-BDFC-8A6D4A953FD7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ETL PROCES"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F1CD4030-A571-4DF4-88F8-7F53ED231A0E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETL PROCES"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETL PROCES\Izbaci duplikate"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Izbaci duplikate"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[Date]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input].Columns[DayNumberOfMonth]"
+                      cachedDataType="ui1"
+                      cachedName="DayNumberOfMonth"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DayNumberOfMonth]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input].Columns[DayNumberOfWeek]"
+                      cachedDataType="ui1"
+                      cachedName="DayNumberOfWeek"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DayNumberOfWeek]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input].Columns[MonthNumberOfYear]"
+                      cachedDataType="ui1"
+                      cachedName="MonthNumberOfYear"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[MonthNumberOfYear]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input].Columns[MonthNameOfYear]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MonthNameOfYear"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[MonthNameOfYear]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input].Columns[CalendarQuarter]"
+                      cachedDataType="ui1"
+                      cachedName="CalendarQuarter"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[CalendarQuarter]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input].Columns[CalendarYear]"
+                      cachedDataType="i2"
+                      cachedName="CalendarYear"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[CalendarYear]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input].Columns[IsWeekend]"
+                      cachedDataType="bool"
+                      cachedName="IsWeekend"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[IsWeekend]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input].Columns[DatumSID]"
+                      cachedDataType="i4"
+                      cachedName="DatumSID"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DatumSID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[Date]"
+                      name="Date">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[Date]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[DayNumberOfMonth]"
+                      dataType="ui1"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[DayNumberOfMonth]"
+                      name="DayNumberOfMonth">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DayNumberOfMonth]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[DayNumberOfWeek]"
+                      dataType="ui1"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[DayNumberOfWeek]"
+                      name="DayNumberOfWeek">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DayNumberOfWeek]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[MonthNumberOfYear]"
+                      dataType="ui1"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[MonthNumberOfYear]"
+                      name="MonthNumberOfYear">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[MonthNumberOfYear]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[MonthNameOfYear]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[MonthNameOfYear]"
+                      name="MonthNameOfYear">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[MonthNameOfYear]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[CalendarQuarter]"
+                      dataType="ui1"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[CalendarQuarter]"
+                      name="CalendarQuarter">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[CalendarQuarter]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[CalendarYear]"
+                      dataType="i2"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[CalendarYear]"
+                      name="CalendarYear">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[CalendarYear]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[IsWeekend]"
+                      dataType="bool"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[IsWeekend]"
+                      name="IsWeekend">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[IsWeekend]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[DatumSID]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[DatumSID]"
+                      name="DatumSID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DatumSID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ucitavanje podataka iz tabele orders"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[sales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+    CAST(CONVERT(CHAR(8), s.SalesDate, 112) AS INT)                   AS DatumSID,     -- YYYYMMDD
+    CAST(s.SalesDate AS DATE)                                          AS [Date],
+    CAST(DATEPART(DAY,     s.SalesDate) AS TINYINT)                    AS DayNumberOfMonth,
+    -- Pon=1..Ned=7, nezavisno od DATEFIRST:
+    CAST( ((DATEPART(WEEKDAY, s.SalesDate) + @@DATEFIRST + 5) % 7) + 1 AS TINYINT) AS DayNumberOfWeek,
+    CAST(DATEPART(MONTH,   s.SalesDate) AS TINYINT)                    AS MonthNumberOfYear,
+    DATENAME(MONTH,        s.SalesDate)                                AS MonthNameOfYear,
+    CAST(DATEPART(QUARTER, s.SalesDate) AS TINYINT)                    AS CalendarQuarter,
+    CAST(DATEPART(YEAR,    s.SalesDate) AS SMALLINT)                   AS CalendarYear,
+    CAST(CASE 
+           WHEN (((DATEPART(WEEKDAY, s.SalesDate) + @@DATEFIRST + 5) % 7) + 1) IN (6,7) 
+             THEN 1 ELSE 0 
+         END AS BIT)                                                   AS IsWeekend
+FROM GrocerySales.dbo.sales AS s
+WHERE s.SalesDate IS NOT NULL;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Connections[OleDbConnection]"
+                  connectionManagerID="{AFAE609F-8876-4E2F-98C4-A0E29AF96A59}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.GrocerySales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DayNumberOfMonth]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[DayNumberOfMonth]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DayNumberOfMonth]"
+                      name="DayNumberOfMonth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DayNumberOfWeek]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[DayNumberOfWeek]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DayNumberOfWeek]"
+                      name="DayNumberOfWeek"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[MonthNumberOfYear]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[MonthNumberOfYear]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[MonthNumberOfYear]"
+                      name="MonthNumberOfYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[MonthNameOfYear]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[MonthNameOfYear]"
+                      length="30"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[MonthNameOfYear]"
+                      name="MonthNameOfYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[CalendarQuarter]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[CalendarQuarter]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[CalendarQuarter]"
+                      name="CalendarQuarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[CalendarYear]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[CalendarYear]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[CalendarYear]"
+                      name="CalendarYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[IsWeekend]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[IsWeekend]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[IsWeekend]"
+                      name="IsWeekend"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DatumSID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[DatumSID]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].Columns[DatumSID]"
+                      name="DatumSID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[DayNumberOfMonth]"
+                      dataType="ui1"
+                      name="DayNumberOfMonth" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[DayNumberOfWeek]"
+                      dataType="ui1"
+                      name="DayNumberOfWeek" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[MonthNumberOfYear]"
+                      dataType="ui1"
+                      name="MonthNumberOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[MonthNameOfYear]"
+                      dataType="wstr"
+                      length="30"
+                      name="MonthNameOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[CalendarQuarter]"
+                      dataType="ui1"
+                      name="CalendarQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[CalendarYear]"
+                      dataType="i2"
+                      name="CalendarYear" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[IsWeekend]"
+                      dataType="bool"
+                      name="IsWeekend" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output].ExternalColumns[DatumSID]"
+                      dataType="i4"
+                      name="DatumSID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[DatumSID]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[DatumSID]"
+                      name="DatumSID" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[DayNumberOfMonth]"
+                      dataType="ui1"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[DayNumberOfMonth]"
+                      name="DayNumberOfMonth" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[DayNumberOfWeek]"
+                      dataType="ui1"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[DayNumberOfWeek]"
+                      name="DayNumberOfWeek" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[MonthNumberOfYear]"
+                      dataType="ui1"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[MonthNumberOfYear]"
+                      name="MonthNumberOfYear" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[MonthNameOfYear]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[MonthNameOfYear]"
+                      name="MonthNameOfYear" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[CalendarQuarter]"
+                      dataType="ui1"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[CalendarQuarter]"
+                      name="CalendarQuarter" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[CalendarYear]"
+                      dataType="i2"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[CalendarYear]"
+                      name="CalendarYear" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[IsWeekend]"
+                      dataType="bool"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[IsWeekend]"
+                      name="IsWeekend" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="upisivanje podataka u tabelu DimVreme"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimVreme]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Connections[OleDbConnection]"
+                  connectionManagerID="{053871B9-2090-4933-9DC9-7700EA52BCD7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.DW_GrocerySales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].Columns[DayNumberOfMonth]"
+                      cachedDataType="ui1"
+                      cachedName="DayNumberOfMonth"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[DayNumberOfMonth]"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[DayNumberOfMonth]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].Columns[DayNumberOfWeek]"
+                      cachedDataType="ui1"
+                      cachedName="DayNumberOfWeek"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[DayNumberOfWeek]"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[DayNumberOfWeek]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].Columns[MonthNumberOfYear]"
+                      cachedDataType="ui1"
+                      cachedName="MonthNumberOfYear"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[MonthNumberOfYear]"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[MonthNumberOfYear]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].Columns[MonthNameOfYear]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MonthNameOfYear"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[MonthNameOfYear]"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[MonthNameOfYear]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].Columns[CalendarQuarter]"
+                      cachedDataType="ui1"
+                      cachedName="CalendarQuarter"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[CalendarQuarter]"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[CalendarQuarter]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].Columns[CalendarYear]"
+                      cachedDataType="i2"
+                      cachedName="CalendarYear"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[CalendarYear]"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[CalendarYear]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].Columns[IsWeekend]"
+                      cachedDataType="bool"
+                      cachedName="IsWeekend"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[IsWeekend]"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[IsWeekend]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].Columns[DatumSID]"
+                      cachedDataType="i4"
+                      cachedName="DatumSID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[DatumSID]"
+                      lineageId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output].Columns[DatumSID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[DatumSID]"
+                      dataType="i4"
+                      name="DatumSID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[DayNumberOfMonth]"
+                      dataType="ui1"
+                      name="DayNumberOfMonth" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[DayNumberOfWeek]"
+                      dataType="ui1"
+                      name="DayNumberOfWeek" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[MonthNumberOfYear]"
+                      dataType="ui1"
+                      name="MonthNumberOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[MonthNameOfYear]"
+                      dataType="wstr"
+                      length="20"
+                      name="MonthNameOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[CalendarQuarter]"
+                      dataType="ui1"
+                      name="CalendarQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[CalendarYear]"
+                      dataType="i2"
+                      name="CalendarYear" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input].ExternalColumns[IsWeekend]"
+                      dataType="bool"
+                      name="IsWeekend" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETL PROCES.Paths[OLE DB Source Output]"
+              endId="Package\ETL PROCES\Izbaci duplikate.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\ETL PROCES\ucitavanje podataka iz tabele orders.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\ETL PROCES.Paths[Sort Output]"
+              endId="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme.Inputs[OLE DB Destination Input]"
+              name="Sort Output"
+              startId="Package\ETL PROCES\Izbaci duplikate.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Kreiraj tabelu DimVreme"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{08BAEBAA-CA4E-4AFA-B307-DBD6DBFD1332}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Kreiraj tabelu DimVreme"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{053871B9-2090-4933-9DC9-7700EA52BCD7}"
+          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;IF DB_ID(N'DW_GrocerySales') IS NULL&#xA;    THROW 50001, 'Baza DW_GrocerySales ne postoji.', 1;&#xA;&#xA;-- 1) Skini sve FK koji referenciraju DimVreme&#xA;DECLARE @drop NVARCHAR(MAX) = N'';&#xA;SELECT @drop = @drop +&#xA;    N'ALTER TABLE ' + QUOTENAME(SCHEMA_NAME(pt.schema_id)) + N'.' + QUOTENAME(pt.name) +&#xA;    N' DROP CONSTRAINT ' + QUOTENAME(fk.name) + N';' + CHAR(10)&#xA;FROM DW_GrocerySales.sys.foreign_keys fk&#xA;JOIN DW_GrocerySales.sys.tables pt ON pt.object_id = fk.parent_object_id&#xA;WHERE fk.referenced_object_id = OBJECT_ID(N'DW_GrocerySales.dbo.DimVreme','U');&#xA;IF (@drop &lt;&gt; N'') EXEC DW_GrocerySales.sys.sp_executesql @drop;&#xA;&#xA;-- 2) Drop/Create DimVreme (DatumSID bez IDENTITY)&#xA;IF OBJECT_ID(N'DW_GrocerySales.dbo.DimVreme','U') IS NOT NULL&#xA;    DROP TABLE DW_GrocerySales.dbo.DimVreme;&#xA;&#xA;CREATE TABLE DW_GrocerySales.dbo.DimVreme&#xA;(&#xA;    DatumSID          INT           NOT NULL CONSTRAINT PK_DimVreme PRIMARY KEY, -- bez IDENTITY&#xA;    [Date]            DATE          NOT NULL,&#xA;    DayNumberOfMonth  TINYINT       NOT NULL,&#xA;    DayNumberOfWeek   TINYINT       NOT NULL,  -- 1=Pon ... 7=Ned&#xA;    MonthNumberOfYear TINYINT       NOT NULL,&#xA;    MonthNameOfYear   NVARCHAR(20)  NOT NULL,&#xA;    CalendarQuarter   TINYINT       NOT NULL,&#xA;    CalendarYear      SMALLINT      NOT NULL,&#xA;    IsWeekend         BIT           NOT NULL&#xA;);&#xA;&#xA;-- jedinstvenost datuma&#xA;CREATE UNIQUE NONCLUSTERED INDEX UX_DimVreme_Date&#xA;  ON DW_GrocerySales.dbo.DimVreme([Date]);&#xA;&#xA;-- 3) Seed: -1 / Unknown (IDENTITY_INSERT nije potreban jer nema IDENTITY)&#xA;INSERT INTO DW_GrocerySales.dbo.DimVreme&#xA;    (DatumSID,[Date],DayNumberOfMonth,DayNumberOfWeek,MonthNumberOfYear,MonthNameOfYear,CalendarQuarter,CalendarYear,IsWeekend)&#xA;VALUES&#xA;    (-1,'1900-01-01', 1, 1, 1, N'Unknown', 1, 1900, 0);&#xA;&#xA;-- 4) Vrati FK-ove za sve tabele koje imaju DatumSID (osim DimVreme)&#xA;DECLARE @add NVARCHAR(MAX) = N'';&#xA;SELECT @add = @add + N'&#xA;IF NOT EXISTS (SELECT 1 FROM DW_GrocerySales.sys.foreign_keys &#xA;               WHERE name = N''FK_' + t.name + '_DimVreme_DatumSID'')&#xA;BEGIN&#xA;  ALTER TABLE ' + QUOTENAME(s.name) + N'.' + QUOTENAME(t.name) + N'&#xA;    WITH NOCHECK ADD CONSTRAINT [FK_' + t.name + '_DimVreme_DatumSID]&#xA;    FOREIGN KEY ([DatumSID]) REFERENCES [DW_GrocerySales].[dbo].[DimVreme]([DatumSID]);&#xA;END&#xA;'&#xA;FROM DW_GrocerySales.sys.tables  t&#xA;JOIN DW_GrocerySales.sys.schemas s ON s.schema_id = t.schema_id&#xA;JOIN DW_GrocerySales.sys.columns c ON c.object_id = t.object_id&#xA;WHERE c.name = N'DatumSID'&#xA;  AND t.object_id &lt;&gt; OBJECT_ID(N'DW_GrocerySales.dbo.DimVreme','U');&#xA;IF (@add &lt;&gt; N'') EXEC DW_GrocerySales.sys.sp_executesql @add;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{47B83DF4-5675-4763-8A72-4E0664FFE1A0}"
+      DTS:From="Package\Kreiraj tabelu DimVreme"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\ETL PROCES" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144,41.6"
+          Id="Package\ETL PROCES"
+          TopLeft="303.833321478632,190.100001467069" />
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Kreiraj tabelu DimVreme"
+          TopLeft="289.166655176216,81.4666673141056" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="385.166655176216,123.066667314106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.33333369758401,67.0333341529634"
+              Start="0,0"
+              End="-9.33333369758401,59.5333341529634">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5166670764817" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5166670764817"
+                    Point2="0,33.5166670764817"
+                    Point3="-4,33.5166670764817" />
+                  <mssgle:LineSegment
+                    End="-5.33333369758401,33.5166670764817" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.33333369758401,33.5166670764817"
+                    Point2="-9.33333369758401,33.5166670764817"
+                    Point3="-9.33333369758401,37.5166670764817" />
+                  <mssgle:LineSegment
+                    End="-9.33333369758401,59.5333341529634" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ETL PROCES">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="262.4,41.6"
+          Id="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme"
+          TopLeft="328.333320286539,257.400002045631" />
+        <NodeLayout
+          Size="244.8,41.6"
+          Id="Package\ETL PROCES\ucitavanje podataka iz tabele orders"
+          TopLeft="315.833320783245,85.8000006818771" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\ETL PROCES\Izbaci duplikate"
+          TopLeft="401.666650705868,172.466668037309" />
+        <EdgeLayout
+          Id="Package\ETL PROCES.Paths[Sort Output]"
+          TopLeft="476.866650705868,214.066668037309">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17.3333304193287,43.3333340083229"
+              Start="0,0"
+              End="-17.3333304193287,35.8333340083229">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.6666670041614" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.6666670041614"
+                    Point2="0,21.6666670041614"
+                    Point3="-4,21.6666670041614" />
+                  <mssgle:LineSegment
+                    End="-13.3333304193287,21.6666670041614" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.3333304193287,21.6666670041614"
+                    Point2="-17.3333304193287,21.6666670041614"
+                    Point3="-17.3333304193287,25.6666670041614" />
+                  <mssgle:LineSegment
+                    End="-17.3333304193287,35.8333340083229" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL PROCES.Paths[OLE DB Source Output]"
+          TopLeft="438.233320783245,127.400000681877">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38.633329922623,45.0666673554319"
+              Start="0,0"
+              End="38.633329922623,37.5666673554319">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.533333677716" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.533333677716"
+                    Point2="0,22.533333677716"
+                    Point3="4,22.533333677716" />
+                  <mssgle:LineSegment
+                    End="34.633329922623,22.533333677716" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34.633329922623,22.533333677716"
+                    Point2="38.633329922623,22.533333677716"
+                    Point3="38.633329922623,26.533333677716" />
+                  <mssgle:LineSegment
+                    End="38.633329922623,37.5666673554319" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL PROCES\upisivanje podataka u tabelu DimVreme">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL PROCES\ucitavanje podataka iz tabele orders">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

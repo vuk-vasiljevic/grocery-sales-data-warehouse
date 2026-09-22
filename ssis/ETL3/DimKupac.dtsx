@@ -1,0 +1,736 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2025 1:07:10 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JFP7O2Q"
+  DTS:CreatorName="DESKTOP-JFP7O2Q\vanja"
+  DTS:DTSID="{FC748B02-E2F8-4477-AB5A-09F8177E8CB3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{14EF5C75-D360-4F46-93D1-68C342EA98EC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ETL PROCES"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F74899F0-9CAC-46AC-A65B-AABE3662A506}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETL PROCES"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="JOIN sa tabelom DImTeritorija"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimTeritorija]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimTeritorija]) [refTable]
+where [refTable].[CityID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="TeritorijaSID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CityID" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CityName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CountryName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CountryCode" dataType="DT_WSTR" length="2" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[CityID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Connections[OleDbConnection]"
+                  connectionManagerID="{053871B9-2090-4933-9DC9-7700EA52BCD7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.DW_GrocerySales]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Inputs[Lookup Input].Columns[CityID]"
+                      cachedDataType="ui1"
+                      cachedName="CityID"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[CityID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CityID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup Match Output].Columns[TeritorijaSID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup Match Output].Columns[TeritorijaSID]"
+                      name="TeritorijaSID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">TeritorijaSID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ucitavanje podataka iz tabele customer"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[customers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Connections[OleDbConnection]"
+                  connectionManagerID="{AFAE609F-8876-4E2F-98C4-A0E29AF96A59}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.GrocerySales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      length="50"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      length="50"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[CityID]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].ExternalColumns[CityID]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[CityID]"
+                      name="CityID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].ExternalColumns[MiddleInitial]"
+                      dataType="wstr"
+                      length="50"
+                      name="MiddleInitial" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].ExternalColumns[CityID]"
+                      dataType="ui1"
+                      name="CityID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[CityID]"
+                      dataType="ui1"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[CityID]"
+                      name="CityID" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL PROCES\upisivanje u tabelu DimKupac"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="upisivanje u tabelu DimKupac"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimKupac]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Connections[OleDbConnection]"
+                  connectionManagerID="{053871B9-2090-4933-9DC9-7700EA52BCD7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.DW_GrocerySales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].Columns[TeritorijaSID]"
+                      cachedDataType="i4"
+                      cachedName="TeritorijaSID"
+                      externalMetadataColumnId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].ExternalColumns[TeritorijaSID]"
+                      lineageId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup Match Output].Columns[TeritorijaSID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].ExternalColumns[KupacSID]"
+                      dataType="i4"
+                      name="KupacSID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input].ExternalColumns[TeritorijaSID]"
+                      dataType="i4"
+                      name="TeritorijaSID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETL PROCES.Paths[Lookup Match Output]"
+              endId="Package\ETL PROCES\upisivanje u tabelu DimKupac.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\ETL PROCES.Paths[OLE DB Source Output]"
+              endId="Package\ETL PROCES\JOIN sa tabelom DImTeritorija.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\ETL PROCES\ucitavanje podataka iz tabele customer.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Kreiranje tabela DimKupac"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{094CAC75-37F9-47E1-878C-8AC2288711CA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Kreiranje tabela DimKupac"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{053871B9-2090-4933-9DC9-7700EA52BCD7}"
+          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;IF DB_ID(N'DW_GrocerySales') IS NULL&#xA;    THROW 50001, 'Baza DW_GrocerySales ne postoji na ovom serveru.', 1;&#xA;&#xA;-- 1) Skini sve FK koji referenciraju DimKupac&#xA;DECLARE @drop NVARCHAR(MAX) = N'';&#xA;SELECT @drop = @drop +&#xA;    N'ALTER TABLE ' + QUOTENAME(SCHEMA_NAME(pt.schema_id)) + N'.' + QUOTENAME(pt.name) +&#xA;    N' DROP CONSTRAINT ' + QUOTENAME(fk.name) + N';' + CHAR(10)&#xA;FROM DW_GrocerySales.sys.foreign_keys fk&#xA;JOIN DW_GrocerySales.sys.tables pt ON pt.object_id = fk.parent_object_id&#xA;WHERE fk.referenced_object_id = OBJECT_ID(N'DW_GrocerySales.dbo.DimKupac','U');&#xA;IF (@drop &lt;&gt; N'') EXEC DW_GrocerySales.sys.sp_executesql @drop;&#xA;&#xA;-- 2) Drop/Create DimKupac&#xA;IF OBJECT_ID(N'DW_GrocerySales.dbo.DimKupac','U') IS NOT NULL&#xA;    DROP TABLE DW_GrocerySales.dbo.DimKupac;&#xA;&#xA;CREATE TABLE DW_GrocerySales.dbo.DimKupac&#xA;(&#xA;    KupacSID      INT IDENTITY(1,1) NOT NULL CONSTRAINT PK_DimKupac PRIMARY KEY,&#xA;    CustomerID    INT            NOT NULL,&#xA;    FirstName     NVARCHAR(50)   NOT NULL,&#xA;    LastName      NVARCHAR(50)   NOT NULL,&#xA;    TeritorijaSID INT            NOT NULL,&#xA;    CONSTRAINT FK_DimKupac_DimTeritorija&#xA;        FOREIGN KEY (TeritorijaSID)&#xA;        REFERENCES DW_GrocerySales.dbo.DimTeritorija (TeritorijaSID)&#xA;);&#xA;&#xA;-- 3) Seed: -1 / Unknown&#xA;SET IDENTITY_INSERT DW_GrocerySales.dbo.DimKupac ON;&#xA;INSERT INTO DW_GrocerySales.dbo.DimKupac (KupacSID, CustomerID, FirstName, LastName, TeritorijaSID)&#xA;VALUES (-1, 0, N'Unknown', N'Unknown', -1);&#xA;SET IDENTITY_INSERT DW_GrocerySales.dbo.DimKupac OFF;&#xA;&#xA;-- 4) Indeksi (preporuka): jedinstveno po CustomerID&#xA;IF NOT EXISTS (SELECT 1 FROM DW_GrocerySales.sys.indexes &#xA;               WHERE name = N'UX_DimKupac_CustomerID'&#xA;                 AND object_id = OBJECT_ID(N'DW_GrocerySales.dbo.DimKupac'))&#xA;    CREATE UNIQUE NONCLUSTERED INDEX UX_DimKupac_CustomerID&#xA;      ON DW_GrocerySales.dbo.DimKupac (CustomerID);&#xA;&#xA;-- 5) Vrati FK-ove za sve tabele koje imaju kolonu KupacSID (osim DimKupac)&#xA;DECLARE @add NVARCHAR(MAX) = N'';&#xA;SELECT @add = @add + N'&#xA;IF NOT EXISTS (SELECT 1 FROM DW_GrocerySales.sys.foreign_keys &#xA;               WHERE name = N''FK_' + t.name + '_DimKupac_KupacSID'')&#xA;BEGIN&#xA;  ALTER TABLE ' + QUOTENAME(s.name) + N'.' + QUOTENAME(t.name) + N'&#xA;    WITH NOCHECK ADD CONSTRAINT [FK_' + t.name + '_DimKupac_KupacSID]&#xA;    FOREIGN KEY ([KupacSID]) REFERENCES [DW_GrocerySales].[dbo].[DimKupac]([KupacSID]);&#xA;END&#xA;'&#xA;FROM DW_GrocerySales.sys.tables  t&#xA;JOIN DW_GrocerySales.sys.schemas s ON s.schema_id = t.schema_id&#xA;JOIN DW_GrocerySales.sys.columns c ON c.object_id = t.object_id&#xA;WHERE c.name = N'KupacSID'&#xA;  AND t.object_id &lt;&gt; OBJECT_ID(N'DW_GrocerySales.dbo.DimKupac','U');&#xA;IF (@add &lt;&gt; N'') EXEC DW_GrocerySales.sys.sp_executesql @add;&#xA;&#xA;-- (opciono) brza provera&#xA;SELECT TOP 1 * FROM DW_GrocerySales.dbo.DimKupac;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{568BC154-F823-4679-9A2E-FBA6129B9BD7}"
+      DTS:From="Package\Kreiranje tabela DimKupac"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\ETL PROCES" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144,41.6"
+          Id="Package\ETL PROCES"
+          TopLeft="297.499988178413,193.266668202612" />
+        <NodeLayout
+          Size="202.4,41.6"
+          Id="Package\Kreiranje tabela DimKupac"
+          TopLeft="268.333322670725,78.0000006198883" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="369.516655424569,119.600000619888">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73.6666675827238"
+              Start="0,0"
+              End="0,66.1666675827238">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.1666675827238" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ETL PROCES">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="257.6,41.6"
+          Id="Package\ETL PROCES\ucitavanje podataka iz tabele customer"
+          TopLeft="326.6666536861,82.3333339876599" />
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\ETL PROCES\JOIN sa tabelom DImTeritorija"
+          TopLeft="342.499986390273,210.600001673698" />
+        <NodeLayout
+          Size="215.2,41.6"
+          Id="Package\ETL PROCES\upisivanje u tabelu DimKupac"
+          TopLeft="335.833319988516,360.533336198595" />
+        <EdgeLayout
+          Id="Package\ETL PROCES.Paths[OLE DB Source Output]"
+          TopLeft="453.583320038187,123.93333398766">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86.6666676860386"
+              Start="0,0"
+              End="0,79.1666676860386">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,79.1666676860386" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL PROCES.Paths[Lookup Match Output]"
+          TopLeft="451.699986390273,252.200001673698">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.26666640175711,108.333334524896"
+              Start="0,0"
+              End="-8.26666640175711,100.833334524896">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.1666672624482" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,50.1666672624482"
+                    Point2="0,54.1666672624482"
+                    Point3="-4,54.1666672624482" />
+                  <mssgle:LineSegment
+                    End="-4.26666640175711,54.1666672624482" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.26666640175711,54.1666672624482"
+                    Point2="-8.26666640175711,54.1666672624482"
+                    Point3="-8.26666640175711,58.1666672624482" />
+                  <mssgle:LineSegment
+                    End="-8.26666640175711,100.833334524896" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-52.3247199196286,59.1666672624482,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL PROCES\ucitavanje podataka iz tabele customer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL PROCES\JOIN sa tabelom DImTeritorija">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimTeritorija]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL PROCES\upisivanje u tabelu DimKupac">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

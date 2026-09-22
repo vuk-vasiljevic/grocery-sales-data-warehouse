@@ -1,0 +1,1950 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2025 1:59:33 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JFP7O2Q"
+  DTS:CreatorName="DESKTOP-JFP7O2Q\vanja"
+  DTS:DTSID="{E5F71C97-F154-4281-BF51-7696156A17DB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="71"
+  DTS:VersionGUID="{4AF2707C-15F0-41B7-B556-8F8D3F21CD94}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ETL proces"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DD3816DA-A562-4756-AF55-31868C0CD0BD}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETL proces"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETL proces\JOIN sa tabelom DimKupac"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="JOIN sa tabelom DimKupac"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimKupac]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimKupac]) [refTable]
+where [refTable].[CustomerID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="KupacSID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CustomerID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FirstName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LastName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TeritorijaSID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[CustomerID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL proces\JOIN sa tabelom DimKupac.Connections[OleDbConnection]"
+                  connectionManagerID="{053871B9-2090-4933-9DC9-7700EA52BCD7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.DW_GrocerySales]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL proces\JOIN sa tabelom DimKupac.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimKupac.Inputs[Lookup Input].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[CustomerID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CustomerID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\ETL proces\JOIN sa tabelom DimKupac.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup Match Output].Columns[KupacSID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup Match Output].Columns[KupacSID]"
+                      name="KupacSID"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">KupacSID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\ETL proces\JOIN sa tabelom DimKupac.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\ETL proces\JOIN sa tabelom DimKupac.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL proces\JOIN sa tabelom DimProizvod"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="JOIN sa tabelom DimProizvod"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimProizvod]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimProizvod]) [refTable]
+where [refTable].[ProductID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ProizvodSID" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductID" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CategoryName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Price" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="Class" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Resistant" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VitalityDays" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[ProductID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL proces\JOIN sa tabelom DimProizvod.Connections[OleDbConnection]"
+                  connectionManagerID="{053871B9-2090-4933-9DC9-7700EA52BCD7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.DW_GrocerySales]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL proces\JOIN sa tabelom DimProizvod.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimProizvod.Inputs[Lookup Input].Columns[ProductID]"
+                      cachedDataType="i2"
+                      cachedName="ProductID"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProductID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\ETL proces\JOIN sa tabelom DimProizvod.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup Match Output].Columns[ProizvodSID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup Match Output].Columns[ProizvodSID]"
+                      name="ProizvodSID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProizvodSID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\ETL proces\JOIN sa tabelom DimProizvod.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\ETL proces\JOIN sa tabelom DimProizvod.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL proces\JOIN sa tabelom DimVreme"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="JOIN sa tabelom DimVreme"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+    CAST(CONVERT(char(8), s.SalesDate, 112) AS int) AS DatumSID
+FROM GrocerySales.dbo.sales AS s
+WHERE s.SalesDate IS NOT NULL;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT DISTINCT
+    CAST(CONVERT(char(8), s.SalesDate, 112) AS int) AS DatumSID
+FROM GrocerySales.dbo.sales AS s
+WHERE s.SalesDate IS NOT NULL;) [refTable]
+where [refTable].[DatumSID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DatumSID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[DatumSID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL proces\JOIN sa tabelom DimVreme.Connections[OleDbConnection]"
+                  connectionManagerID="{053871B9-2090-4933-9DC9-7700EA52BCD7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.DW_GrocerySales]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL proces\JOIN sa tabelom DimVreme.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimVreme.Inputs[Lookup Input].Columns[DatumSID]"
+                      cachedDataType="i4"
+                      cachedName="DatumSID"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[DatumSID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DatumSID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\ETL proces\JOIN sa tabelom DimVreme.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup Match Output].Columns[DatumSID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup Match Output].Columns[DatumSID]"
+                      name="DatumSID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DatumSID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\ETL proces\JOIN sa tabelom DimVreme.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\ETL proces\JOIN sa tabelom DimVreme.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL proces\Obracun kolone total price"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Obracun kolone total price"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ETL proces\Obracun kolone total price.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL proces\Obracun kolone total price.Inputs[Derived Column Input].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\ETL proces\Obracun kolone total price.Inputs[Derived Column Input].Columns[Discount]"
+                      cachedDataType="numeric"
+                      cachedName="Discount"
+                      cachedPrecision="9"
+                      cachedScale="4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Discount]" />
+                    <inputColumn
+                      refId="Package\ETL proces\Obracun kolone total price.Inputs[Derived Column Input].Columns[TotalPrice]"
+                      cachedDataType="numeric"
+                      cachedName="TotalPrice"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TotalPrice]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_NUMERIC,12,2)((DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]} * (DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]} * (1 - ([ISNULL](#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Discount]}) ? (DT_R8)0 : (DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Discount]})))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_NUMERIC,12,2)((DT_R8)Quantity * (DT_R8)UnitPrice * (1 - (ISNULL(Discount) ? (DT_R8)0 : (DT_R8)Discount)))</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL proces\Obracun kolone total price.Inputs[Derived Column Input].Columns[UnitPrice]"
+                      cachedDataType="numeric"
+                      cachedName="UnitPrice"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL proces\Obracun kolone total price.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\ETL proces\Obracun kolone total price.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL proces\Obracun kolone total price.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\ETL proces\Obracun kolone total price.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\Obracun kolone total price.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\Obracun kolone total price.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL proces\Obracun kolone total price.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\Obracun kolone total price.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL proces\promena tipa product id"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="promena tipa product id"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ETL proces\promena tipa product id.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL proces\promena tipa product id.Inputs[Data Conversion Input].Columns[ProductID]"
+                      cachedDataType="i2"
+                      cachedName="ProductID"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL proces\promena tipa product id.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\ETL proces\promena tipa product id.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\promena tipa product id.Outputs[Data Conversion Output].Columns[Copy of ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL proces\promena tipa product id.Outputs[Data Conversion Output].Columns[Copy of ProductID]"
+                      name="Copy of ProductID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[ProductID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL proces\promena tipa product id.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\ETL proces\promena tipa product id.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\promena tipa product id.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\promena tipa product id.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL proces\promena tipa product id.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\promena tipa product id.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL proces\racunanje izvedenih mera"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="racunanje izvedenih mera"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ETL proces\racunanje izvedenih mera.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL proces\racunanje izvedenih mera.Inputs[Derived Column Input].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\ETL proces\racunanje izvedenih mera.Inputs[Derived Column Input].Columns[UnitPrice]"
+                      cachedDataType="numeric"
+                      cachedName="UnitPrice"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\ETL proces\racunanje izvedenih mera.Inputs[Derived Column Input].Columns[TotalPrice]"
+                      cachedDataType="numeric"
+                      cachedName="TotalPrice"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TotalPrice]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\ETL proces\racunanje izvedenih mera.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[EffectiveDiscountAmount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[EffectiveDiscountAmount]"
+                      name="EffectiveDiscountAmount"
+                      precision="18"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_NUMERIC,18,4)((DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]} * (DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]} - (DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TotalPrice]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_NUMERIC,18,4)((DT_R8)Quantity * (DT_R8)UnitPrice - (DT_R8)TotalPrice)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[UnitNetPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[UnitNetPrice]"
+                      name="UnitNetPrice"
+                      precision="18"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_NUMERIC,18,4)(#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]} &gt; 0 ? (DT_NUMERIC,18,4)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TotalPrice]} / (DT_NUMERIC,18,4)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]} : 0)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_NUMERIC,18,4)(Quantity &gt; 0 ? (DT_NUMERIC,18,4)TotalPrice / (DT_NUMERIC,18,4)Quantity : 0)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[HasDiscount]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[HasDiscount]"
+                      name="HasDiscount"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_BOOL)((DT_NUMERIC,18,4)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]} * (DT_NUMERIC,18,4)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]} &gt; (DT_NUMERIC,18,4)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TotalPrice]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_BOOL)((DT_NUMERIC,18,4)Quantity * (DT_NUMERIC,18,4)UnitPrice &gt; (DT_NUMERIC,18,4)TotalPrice)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[EffectiveDiscountPct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[EffectiveDiscountPct]"
+                      name="EffectiveDiscountPct"
+                      precision="18"
+                      scale="6"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_NUMERIC,18,6)(((DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]} * (DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]}) &gt; 0 ? (((DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]} * (DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]}) - (DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TotalPrice]}) / ((DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]} * (DT_R8)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]}) : 0)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_NUMERIC,18,6)(((DT_R8)Quantity * (DT_R8)UnitPrice) &gt; 0 ? (((DT_R8)Quantity * (DT_R8)UnitPrice) - (DT_R8)TotalPrice) / ((DT_R8)Quantity * (DT_R8)UnitPrice) : 0)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[GrossSales]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[GrossSales]"
+                      name="GrossSales"
+                      precision="18"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_NUMERIC,18,4)((DT_NUMERIC,38,10)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]} * (DT_NUMERIC,38,10)#{Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_NUMERIC,18,4)((DT_NUMERIC,38,10)Quantity * (DT_NUMERIC,38,10)UnitPrice)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\ETL proces\racunanje izvedenih mera.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL proces\ucitavanje podataka iz tabele sales"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ucitavanje podataka iz tabele sales"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    s.SalesID                                   AS SourceSalesID,
+    s.TransactionNumber,
+    CAST(s.ProductID   AS INT)                  AS ProductID,
+    CAST(s.CustomerID  AS INT)                  AS CustomerID,
+    s.SalesDate,
+    CAST(CONVERT(CHAR(8), s.SalesDate,112) AS INT) AS DatumSID,  -- YYYYMMDD
+    CAST(s.Quantity    AS INT)                  AS Quantity,
+    CAST(s.Discount    AS DECIMAL(9,4))         AS Discount,
+    CAST(s.TotalPrice  AS DECIMAL(12,2))        AS TotalPrice,
+    CAST(p.Price       AS DECIMAL(10,2))        AS UnitPrice
+FROM GrocerySales.dbo.sales s
+JOIN GrocerySales.dbo.products p
+  ON p.ProductID = s.ProductID
+WHERE s.SalesDate IS NOT NULL;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Connections[OleDbConnection]"
+                  connectionManagerID="{AFAE609F-8876-4E2F-98C4-A0E29AF96A59}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.GrocerySales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TransactionNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[TransactionNumber]"
+                      length="50"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TransactionNumber]"
+                      name="TransactionNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[SalesDate]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[SalesDate]"
+                      name="SalesDate"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Discount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Discount]"
+                      name="Discount"
+                      precision="9"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TotalPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[TotalPrice]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TotalPrice]"
+                      name="TotalPrice"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[SourceSalesID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[SourceSalesID]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[SourceSalesID]"
+                      name="SourceSalesID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[DatumSID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[DatumSID]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[DatumSID]"
+                      name="DatumSID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[TransactionNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="TransactionNumber" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[SalesDate]"
+                      dataType="dbTimeStamp2"
+                      name="SalesDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                      dataType="numeric"
+                      name="Discount"
+                      precision="9"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[TotalPrice]"
+                      dataType="numeric"
+                      name="TotalPrice"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[SourceSalesID]"
+                      dataType="i4"
+                      name="SourceSalesID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[DatumSID]"
+                      dataType="i4"
+                      name="DatumSID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      dataType="numeric"
+                      name="UnitPrice"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[TransactionNumber]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[TransactionNumber]"
+                      name="TransactionNumber" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[SalesDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[SalesDate]"
+                      name="SalesDate"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                      dataType="numeric"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                      name="Discount"
+                      precision="9"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[TotalPrice]"
+                      dataType="numeric"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[TotalPrice]"
+                      name="TotalPrice"
+                      precision="12"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[SourceSalesID]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[SourceSalesID]"
+                      name="SourceSalesID" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[DatumSID]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[DatumSID]"
+                      name="DatumSID" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      dataType="numeric"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      precision="10"
+                      scale="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL proces\upisivanje podataka u skladiste"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="upisivanje podataka u skladiste"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactProdaja]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL proces\upisivanje podataka u skladiste.Connections[OleDbConnection]"
+                  connectionManagerID="{053871B9-2090-4933-9DC9-7700EA52BCD7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.DW_GrocerySales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[TransactionNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TransactionNumber"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[TransactionNumber]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TransactionNumber]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      cachedDataType="i4"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[Discount]"
+                      cachedDataType="numeric"
+                      cachedName="Discount"
+                      cachedPrecision="9"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[Discount]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[TotalPrice]"
+                      cachedDataType="numeric"
+                      cachedName="TotalPrice"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[TotalPrice]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[TotalPrice]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[SourceSalesID]"
+                      cachedDataType="i4"
+                      cachedName="SourceSalesID"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[SourceSalesID]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[SourceSalesID]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="numeric"
+                      cachedName="UnitPrice"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[KupacSID]"
+                      cachedDataType="i4"
+                      cachedName="KupacSID"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[KupacSID]"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup Match Output].Columns[KupacSID]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[ProizvodSID]"
+                      cachedDataType="i2"
+                      cachedName="ProizvodSID"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[ProizvodSID]"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup Match Output].Columns[ProizvodSID]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[GrossSales]"
+                      cachedDataType="numeric"
+                      cachedName="GrossSales"
+                      cachedPrecision="18"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[GrossSales]"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[GrossSales]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[EffectiveDiscountAmount]"
+                      cachedDataType="numeric"
+                      cachedName="EffectiveDiscountAmount"
+                      cachedPrecision="18"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveDiscountAmount]"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[EffectiveDiscountAmount]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[UnitNetPrice]"
+                      cachedDataType="numeric"
+                      cachedName="UnitNetPrice"
+                      cachedPrecision="18"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[UnitNetPrice]"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[UnitNetPrice]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[HasDiscount]"
+                      cachedDataType="bool"
+                      cachedName="HasDiscount"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[HasDiscount]"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[HasDiscount]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[EffectiveDiscountPct]"
+                      cachedDataType="numeric"
+                      cachedName="EffectiveDiscountPct"
+                      cachedPrecision="18"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveDiscountPct]"
+                      lineageId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output].Columns[EffectiveDiscountPct]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].Columns[DatumSID]"
+                      cachedDataType="i4"
+                      cachedName="DatumSID"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[DatumSID]"
+                      lineageId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup Match Output].Columns[DatumSID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[FactProdajaID]"
+                      dataType="i8"
+                      name="FactProdajaID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[ProizvodSID]"
+                      dataType="i2"
+                      name="ProizvodSID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[KupacSID]"
+                      dataType="i4"
+                      name="KupacSID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[DatumSID]"
+                      dataType="i4"
+                      name="DatumSID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[TransactionNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="TransactionNumber" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[SourceSalesID]"
+                      dataType="i4"
+                      name="SourceSalesID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      dataType="ui1"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      dataType="r8"
+                      name="Discount" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[TotalPrice]"
+                      dataType="r8"
+                      name="TotalPrice" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="r8"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[GrossSales]"
+                      dataType="r8"
+                      name="GrossSales" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveDiscountAmount]"
+                      dataType="r8"
+                      name="EffectiveDiscountAmount" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveDiscountPct]"
+                      dataType="r8"
+                      name="EffectiveDiscountPct" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[UnitNetPrice]"
+                      dataType="r8"
+                      name="UnitNetPrice" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input].ExternalColumns[HasDiscount]"
+                      dataType="bool"
+                      name="HasDiscount" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL proces\upisivanje podataka u skladiste.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\upisivanje podataka u skladiste.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL proces\upisivanje podataka u skladiste.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\upisivanje podataka u skladiste.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETL proces.Paths[Data Conversion Output]"
+              endId="Package\ETL proces\JOIN sa tabelom DimProizvod.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\ETL proces\promena tipa product id.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\ETL proces.Paths[Derived Column Output]"
+              endId="Package\ETL proces\upisivanje podataka u skladiste.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\ETL proces\racunanje izvedenih mera.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\ETL proces.Paths[Derived Column Output1]"
+              endId="Package\ETL proces\racunanje izvedenih mera.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\ETL proces\Obracun kolone total price.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\ETL proces.Paths[Lookup Match Output]"
+              endId="Package\ETL proces\promena tipa product id.Inputs[Data Conversion Input]"
+              name="Lookup Match Output"
+              startId="Package\ETL proces\JOIN sa tabelom DimKupac.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\ETL proces.Paths[Lookup Match Output1]"
+              endId="Package\ETL proces\JOIN sa tabelom DimVreme.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\ETL proces\JOIN sa tabelom DimProizvod.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\ETL proces.Paths[Lookup Match Output2]"
+              endId="Package\ETL proces\Obracun kolone total price.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\ETL proces\JOIN sa tabelom DimVreme.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\ETL proces.Paths[OLE DB Source Output]"
+              endId="Package\ETL proces\JOIN sa tabelom DimKupac.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\ETL proces\ucitavanje podataka iz tabele sales.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Kreiraj tabelu cinjenica u skladistu podataka"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{25EE03BE-DADF-49D9-B036-5F6BD1EE2BD0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Kreiraj tabelu cinjenica u skladistu podataka"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{053871B9-2090-4933-9DC9-7700EA52BCD7}"
+          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;IF DB_ID(N'DW_GrocerySales') IS NULL&#xA;    THROW 50001, 'Baza DW_GrocerySales ne postoji na ovom serveru.', 1;&#xA;&#xA;-- 1) Skini FK-ove koji referenciraju fact&#xA;DECLARE @drop NVARCHAR(MAX) = N'';&#xA;SELECT @drop = @drop +&#xA;    N'ALTER TABLE ' + QUOTENAME(SCHEMA_NAME(pt.schema_id)) + N'.' + QUOTENAME(pt.name) +&#xA;    N' DROP CONSTRAINT ' + QUOTENAME(fk.name) + N';' + CHAR(10)&#xA;FROM DW_GrocerySales.sys.foreign_keys fk&#xA;JOIN DW_GrocerySales.sys.tables pt ON pt.object_id = fk.parent_object_id&#xA;WHERE fk.referenced_object_id = OBJECT_ID(N'DW_GrocerySales.dbo.FactProdaja','U');&#xA;IF (@drop &lt;&gt; N'') EXEC DW_GrocerySales.sys.sp_executesql @drop;&#xA;&#xA;-- 2) DROP/CREATE&#xA;IF OBJECT_ID(N'DW_GrocerySales.dbo.FactProdaja','U') IS NOT NULL&#xA;    DROP TABLE DW_GrocerySales.dbo.FactProdaja;&#xA;&#xA;CREATE TABLE DW_GrocerySales.dbo.FactProdaja&#xA;(&#xA;    -- Primarni ključ sa IDENTITY&#xA;    FactProdajaID BIGINT IDENTITY(1,1) NOT NULL&#xA;        CONSTRAINT PK_FactProdaja PRIMARY KEY,&#xA;&#xA;    -- Veze na dimenzije&#xA;    ProizvodSID SMALLINT       NULL,&#xA;    KupacSID INT               NULL,&#xA;    DatumSID INT               NULL,  -- YYYYMMDD&#xA;&#xA;    -- Degenerisani ključ&#xA;    TransactionNumber NVARCHAR(50) NULL,&#xA;&#xA;    -- Trag iz izvora&#xA;    SourceSalesID INT NULL,&#xA;&#xA;    -- MERE (isti tipovi kao u OLTP)&#xA;    Quantity TINYINT NULL,&#xA;    Discount FLOAT NULL,&#xA;    TotalPrice FLOAT NULL,&#xA;    UnitPrice FLOAT NULL,   -- dodata po analogiji iz izvora (možeš je računati u ETL-u)&#xA;&#xA;    -- Izvedene kolone (opciono)&#xA;    GrossSales FLOAT NULL,&#xA;    EffectiveDiscountAmount FLOAT NULL,&#xA;    EffectiveDiscountPct FLOAT NULL,&#xA;    UnitNetPrice FLOAT NULL,&#xA;    HasDiscount BIT NULL&#xA;);&#xA;&#xA;-- 3) Nema CHECK ni FOREIGN KEY ograničenja — sve može da se upiše&#xA;&#xA;-- 4) Indeksi&#xA;CREATE NONCLUSTERED INDEX IX_FactProdaja_Date   ON DW_GrocerySales.dbo.FactProdaja (DatumSID);&#xA;CREATE NONCLUSTERED INDEX IX_FactProdaja_Prod   ON DW_GrocerySales.dbo.FactProdaja (ProizvodSID);&#xA;CREATE NONCLUSTERED INDEX IX_FactProdaja_Cust   ON DW_GrocerySales.dbo.FactProdaja (KupacSID);&#xA;CREATE NONCLUSTERED INDEX IX_FactProdaja_Trans  ON DW_GrocerySales.dbo.FactProdaja (TransactionNumber);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FB4D02B7-47E6-4210-96EA-FD765D9C0DC5}"
+      DTS:From="Package\Kreiraj tabelu cinjenica u skladistu podataka"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\ETL proces" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="131.2,41.6"
+          Id="Package\ETL proces"
+          TopLeft="336.666653288736,173.333334710863" />
+        <NodeLayout
+          Size="280.8,41.6"
+          Id="Package\Kreiraj tabelu cinjenica u skladistu podataka"
+          TopLeft="278.333322273361,78.0000006198883" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="418.733322273361,119.600000619888">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16.466668984625,53.7333340909747"
+              Start="0,0"
+              End="-16.466668984625,46.2333340909747">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.8666670454873" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.8666670454873"
+                    Point2="0,26.8666670454873"
+                    Point3="-4,26.8666670454873" />
+                  <mssgle:LineSegment
+                    End="-12.466668984625,26.8666670454873" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12.466668984625,26.8666670454873"
+                    Point2="-16.466668984625,26.8666670454873"
+                    Point3="-16.466668984625,30.8666670454873" />
+                  <mssgle:LineSegment
+                    End="-16.466668984625,46.2333340909747" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ETL proces">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="222.4,41.6"
+          Id="Package\ETL proces\upisivanje podataka u skladiste"
+          TopLeft="278.666661633386,683.800005434354" />
+        <NodeLayout
+          Size="197.6,41.6"
+          Id="Package\ETL proces\racunanje izvedenih mera"
+          TopLeft="351.041652717525,580.666671281391" />
+        <NodeLayout
+          Size="239.2,41.6"
+          Id="Package\ETL proces\ucitavanje podataka iz tabele sales"
+          TopLeft="189.166659149859,84.5000006715457" />
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\ETL proces\JOIN sa tabelom DimProizvod"
+          TopLeft="214.583324806558,325.000002582868" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\ETL proces\Obracun kolone total price"
+          TopLeft="412.833322968748,506.733337252405" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\ETL proces\promena tipa product id"
+          TopLeft="541.666645142768,195.000001549721" />
+        <NodeLayout
+          Size="206.4,41.6"
+          Id="Package\ETL proces\JOIN sa tabelom DimKupac"
+          TopLeft="215.624991431833,195.000001549721" />
+        <NodeLayout
+          Size="207.2,41.6"
+          Id="Package\ETL proces\JOIN sa tabelom DimVreme"
+          TopLeft="257.291656442815,427.916670067443" />
+        <EdgeLayout
+          Id="Package\ETL proces.Paths[OLE DB Source Output]"
+          TopLeft="308.766659149859,126.100000671546">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.058332281974,68.9000008781753"
+              Start="0,0"
+              End="10.058332281974,61.4000008781753">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.4500004390876" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.4500004390876"
+                    Point2="0,34.4500004390876"
+                    Point3="4,34.4500004390876" />
+                  <mssgle:LineSegment
+                    End="6.058332281974,34.4500004390876" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.058332281974,34.4500004390876"
+                    Point2="10.058332281974,34.4500004390876"
+                    Point3="10.058332281974,38.4500004390876" />
+                  <mssgle:LineSegment
+                    End="10.058332281974,61.4000008781753" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL proces.Paths[Lookup Match Output2]"
+          TopLeft="360.891656442815,469.516670067443">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="151.541666525933,37.216667184962"
+              Start="0,0"
+              End="151.541666525933,29.716667184962">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.608333592481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.608333592481"
+                    Point2="0,18.608333592481"
+                    Point3="4,18.608333592481" />
+                  <mssgle:LineSegment
+                    End="147.541666525933,18.608333592481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="147.541666525933,18.608333592481"
+                    Point2="151.541666525933,18.608333592481"
+                    Point3="151.541666525933,22.608333592481" />
+                  <mssgle:LineSegment
+                    End="151.541666525933,29.716667184962" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="27.5794465442167,23.608333592481,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL proces.Paths[Lookup Match Output1]"
+          TopLeft="323.383324806558,366.600002582868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37.5083316362567,61.316667484575"
+              Start="0,0"
+              End="37.5083316362567,53.816667484575">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.6583337422875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.6583337422875"
+                    Point2="0,30.6583337422875"
+                    Point3="4,30.6583337422875" />
+                  <mssgle:LineSegment
+                    End="33.5083316362567,30.6583337422875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="33.5083316362567,30.6583337422875"
+                    Point2="37.5083316362567,30.6583337422875"
+                    Point3="37.5083316362567,34.6583337422875" />
+                  <mssgle:LineSegment
+                    End="37.5083316362567,53.816667484575" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-29.4372209006217,35.6583337422875,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL proces.Paths[Lookup Match Output]"
+          TopLeft="422.024991431833,215.800001549721">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="119.641653710935,0"
+              Start="0,0"
+              End="112.141653710935,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="112.141653710935,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="7.8794401367175,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL proces.Paths[Derived Column Output1]"
+          TopLeft="512.433322968748,548.333337252405">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-62.5916702512234,32.333334028986"
+              Start="0,0"
+              End="-62.5916702512234,24.833334028986">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.166667014493" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.166667014493"
+                    Point2="0,16.166667014493"
+                    Point3="-4,16.166667014493" />
+                  <mssgle:LineSegment
+                    End="-58.5916702512234,16.166667014493" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-58.5916702512234,16.166667014493"
+                    Point2="-62.5916702512234,16.166667014493"
+                    Point3="-62.5916702512234,20.166667014493" />
+                  <mssgle:LineSegment
+                    End="-62.5916702512234,24.833334028986" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL proces.Paths[Derived Column Output]"
+          TopLeft="449.841652717525,622.266671281391">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-59.9749910841395,61.5333341529631"
+              Start="0,0"
+              End="-59.9749910841395,54.0333341529631">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.7666670764816" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.7666670764816"
+                    Point2="0,30.7666670764816"
+                    Point3="-4,30.7666670764816" />
+                  <mssgle:LineSegment
+                    End="-55.9749910841395,30.7666670764816" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-55.9749910841395,30.7666670764816"
+                    Point2="-59.9749910841395,30.7666670764816"
+                    Point3="-59.9749910841395,34.7666670764816" />
+                  <mssgle:LineSegment
+                    End="-59.9749910841395,54.0333341529631" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL proces.Paths[Data Conversion Output]"
+          TopLeft="635.266645142768,236.600001549721">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-311.88332033621,88.4000010331472"
+              Start="0,0"
+              End="-311.88332033621,80.9000010331472">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.2000005165736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.2000005165736"
+                    Point2="0,44.2000005165736"
+                    Point3="-4,44.2000005165736" />
+                  <mssgle:LineSegment
+                    End="-307.88332033621,44.2000005165736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-307.88332033621,44.2000005165736"
+                    Point2="-311.88332033621,44.2000005165736"
+                    Point3="-311.88332033621,48.2000005165736" />
+                  <mssgle:LineSegment
+                    End="-311.88332033621,80.9000010331472" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="tabele spajamo po koloni product id ali se tip podatka iz tabele sales nije poklapao sa tipom podatka iz dimenzije proizvod, pa smo dodali ovo &#xA;"
+          ParentId="Package\ETL proces"
+          FontInfo="{assembly:Null}"
+          Size="784.8,56"
+          Id="ba860df5-0997-4a25-9837-26050ce30284"
+          TopLeft="603.749976009131,125.01666766021" />
+        <AnnotationLayout
+          Text="kolona totalprice je u OLTP bila 0, ovde smo morali da izracunamo njenu vrednost kako bismo mogli da nju koristimo u narednom tasku za racunanje drugih vrenodst&#xA;"
+          ParentId="Package\ETL proces"
+          FontInfo="{assembly:Null}"
+          Size="904,56"
+          Id="f1745260-7301-49d7-b6c9-73744cc70778"
+          TopLeft="635.833308067588,504.866670392884" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL proces\upisivanje podataka u skladiste">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL proces\ucitavanje podataka iz tabele sales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL proces\JOIN sa tabelom DimProizvod">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimProizvod]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL proces\JOIN sa tabelom DimKupac">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimKupac]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL proces\JOIN sa tabelom DimVreme">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

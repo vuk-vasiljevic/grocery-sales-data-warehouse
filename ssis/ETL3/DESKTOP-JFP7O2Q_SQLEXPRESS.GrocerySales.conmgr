@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-JFP7O2Q_SQLEXPRESS.GrocerySales"
+  DTS:DTSID="{AFAE609F-8876-4E2F-98C4-A0E29AF96A59}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=DESKTOP-JFP7O2Q\SQLEXPRESS;Initial Catalog=GrocerySales;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-ETL3-{AFAE609F-8876-4E2F-98C4-A0E29AF96A59}DESKTOP-JFP7O2Q\SQLEXPRESS.GrocerySales;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

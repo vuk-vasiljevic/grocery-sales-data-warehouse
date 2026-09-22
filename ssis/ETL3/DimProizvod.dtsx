@@ -1,0 +1,609 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2025 1:15:43 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JFP7O2Q"
+  DTS:CreatorName="DESKTOP-JFP7O2Q\vanja"
+  DTS:DTSID="{D33F1691-62B4-4E3E-9565-45C2DA6F46FE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{6E0A9086-D710-45ED-9378-46C429EEBD71}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ETL proces"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C40EA565-61BE-498B-994B-21705A65A379}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETL proces"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ucitavanje podataka iz tabela products i categories"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    CAST(p.ProductID AS INT)                                        AS ProductID,
+    CAST(LEFT(LTRIM(RTRIM(p.ProductName)), 100) AS NVARCHAR(100))   AS ProductName,
+    CAST(LEFT(LTRIM(RTRIM(c.CategoryName)),100) AS NVARCHAR(100))   AS CategoryName,
+    CAST(TRY_CONVERT(DECIMAL(10,2), p.Price) AS DECIMAL(10,2))      AS Price,
+    CAST(LEFT(LTRIM(RTRIM(p.Class)),50) AS NVARCHAR(50))            AS Class,
+    CAST(CASE WHEN TRY_CONVERT(INT, p.Resistant) IN (1,0)
+              THEN TRY_CONVERT(BIT, p.Resistant)
+              WHEN UPPER(LTRIM(RTRIM(p.Resistant))) IN (N'Y',N'YES',N'T',N'TRUE') THEN 1
+              WHEN UPPER(LTRIM(RTRIM(p.Resistant))) IN (N'N',N'NO',N'F',N'FALSE')  THEN 0
+              ELSE NULL END AS BIT)                                 AS Resistant,
+    CAST(TRY_CONVERT(SMALLINT, p.VitalityDays) AS SMALLINT)         AS VitalityDays
+FROM dbo.products   AS p
+JOIN dbo.categories AS c
+  ON c.CategoryID = p.CategoryID
+WHERE p.ProductID IS NOT NULL
+  AND LEN(LTRIM(RTRIM(ISNULL(p.ProductName,N'')))) &gt; 0
+  AND LEN(LTRIM(RTRIM(ISNULL(c.CategoryName,N'')))) &gt; 0;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Connections[OleDbConnection]"
+                  connectionManagerID="{AFAE609F-8876-4E2F-98C4-A0E29AF96A59}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.GrocerySales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[ProductName]"
+                      length="100"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[ProductName]"
+                      name="ProductName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[CategoryName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[CategoryName]"
+                      length="100"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[CategoryName]"
+                      name="CategoryName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[Price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[Price]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[Price]"
+                      name="Price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[Class]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[Class]"
+                      length="50"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[Class]"
+                      name="Class"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[Resistant]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[Resistant]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[Resistant]"
+                      name="Resistant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[VitalityDays]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[VitalityDays]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[VitalityDays]"
+                      name="VitalityDays"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="100"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[CategoryName]"
+                      dataType="wstr"
+                      length="100"
+                      name="CategoryName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[Price]"
+                      dataType="numeric"
+                      name="Price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[Class]"
+                      dataType="wstr"
+                      length="50"
+                      name="Class" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[Resistant]"
+                      dataType="bool"
+                      name="Resistant" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].ExternalColumns[VitalityDays]"
+                      dataType="i2"
+                      name="VitalityDays" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[ProductName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[CategoryName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[CategoryName]"
+                      name="CategoryName" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[Price]"
+                      dataType="numeric"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[Price]"
+                      name="Price"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[Class]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[Class]"
+                      name="Class" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[Resistant]"
+                      dataType="bool"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[Resistant]"
+                      name="Resistant" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[VitalityDays]"
+                      dataType="i2"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[VitalityDays]"
+                      name="VitalityDays" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL proces\upisivanje podataka u DimProizvod"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="upisivanje podataka u DimProizvod"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimProizvod]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL proces\upisivanje podataka u DimProizvod.Connections[OleDbConnection]"
+                  connectionManagerID="{053871B9-2090-4933-9DC9-7700EA52BCD7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-JFP7O2Q_SQLEXPRESS.DW_GrocerySales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="ProductName"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[ProductName]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].Columns[CategoryName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CategoryName"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[CategoryName]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[CategoryName]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].Columns[Class]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Class"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[Class]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[Class]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].Columns[Resistant]"
+                      cachedDataType="bool"
+                      cachedName="Resistant"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[Resistant]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[Resistant]" />
+                    <inputColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].Columns[VitalityDays]"
+                      cachedDataType="i2"
+                      cachedName="VitalityDays"
+                      externalMetadataColumnId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[VitalityDays]"
+                      lineageId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output].Columns[VitalityDays]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[ProizvodSID]"
+                      dataType="i2"
+                      name="ProizvodSID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      dataType="i2"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="100"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[CategoryName]"
+                      dataType="wstr"
+                      length="100"
+                      name="CategoryName" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[Class]"
+                      dataType="wstr"
+                      length="50"
+                      name="Class" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[Resistant]"
+                      dataType="bool"
+                      name="Resistant" />
+                    <externalMetadataColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input].ExternalColumns[VitalityDays]"
+                      dataType="i2"
+                      name="VitalityDays" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL proces\upisivanje podataka u DimProizvod.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\upisivanje podataka u DimProizvod.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL proces\upisivanje podataka u DimProizvod.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL proces\upisivanje podataka u DimProizvod.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETL proces.Paths[OLE DB Source Output]"
+              endId="Package\ETL proces\upisivanje podataka u DimProizvod.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ETL proces\ucitavanje podataka iz tabela products i categories.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\kreiranje tabele DimProizvod"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F725F785-DA51-4460-984B-0BF9476172F6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="kreiranje tabele DimProizvod"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{053871B9-2090-4933-9DC9-7700EA52BCD7}"
+          SQLTask:SqlStatementSource="SET NOCOUNT ON;&#xA;&#xA;IF DB_ID(N'DW_GrocerySales') IS NULL&#xA;    THROW 50001, 'Baza DW_GrocerySales ne postoji na ovom serveru.', 1;&#xA;&#xA;-- 1) Skini sve FK koji referenciraju DimProizvod&#xA;DECLARE @drop NVARCHAR(MAX) = N'';&#xA;SELECT @drop = @drop +&#xA;    N'ALTER TABLE ' + QUOTENAME(SCHEMA_NAME(pt.schema_id)) + N'.' + QUOTENAME(pt.name) +&#xA;    N' DROP CONSTRAINT ' + QUOTENAME(fk.name) + N';' + CHAR(10)&#xA;FROM DW_GrocerySales.sys.foreign_keys fk&#xA;JOIN DW_GrocerySales.sys.tables pt ON pt.object_id = fk.parent_object_id&#xA;WHERE fk.referenced_object_id = OBJECT_ID(N'DW_GrocerySales.dbo.DimProizvod','U');&#xA;IF (@drop &lt;&gt; N'') EXEC DW_GrocerySales.sys.sp_executesql @drop;&#xA;&#xA;-- 2) DROP / CREATE DimProizvod (SMALLINT ključ!)&#xA;IF OBJECT_ID(N'DW_GrocerySales.dbo.DimProizvod','U') IS NOT NULL&#xA;    DROP TABLE DW_GrocerySales.dbo.DimProizvod;&#xA;&#xA;CREATE TABLE DW_GrocerySales.dbo.DimProizvod&#xA;(&#xA;    ProizvodSID   SMALLINT IDENTITY(1,1) NOT NULL&#xA;        CONSTRAINT PK_DimProizvod PRIMARY KEY,&#xA;&#xA;    -- prirodni ključ iz OLTP (po želji ga možeš ostaviti kao SMALLINT; nije u FK-u)&#xA;    ProductID     SMALLINT       NOT NULL,&#xA;    ProductName   NVARCHAR(100)  NOT NULL,&#xA;    CategoryName  NVARCHAR(100)  NOT NULL, &#xA;    Class         NVARCHAR(50)   NULL,&#xA;    Resistant     BIT            NULL,&#xA;    VitalityDays  SMALLINT       NULL&#xA;);&#xA;&#xA;-- 3) Seed -1 (Unknown)&#xA;SET IDENTITY_INSERT DW_GrocerySales.dbo.DimProizvod ON;&#xA;INSERT INTO DW_GrocerySales.dbo.DimProizvod&#xA;        (ProizvodSID, ProductID, ProductName, CategoryName,Class, Resistant, VitalityDays)&#xA;VALUES  (-1,          0,         N'Unknown',  N'Unknown', N'Unknown', NULL, NULL);&#xA;SET IDENTITY_INSERT DW_GrocerySales.dbo.DimProizvod OFF;&#xA;&#xA;-- 4) Indeksi&#xA;IF NOT EXISTS (SELECT 1 FROM DW_GrocerySales.sys.indexes &#xA;               WHERE name = N'UX_DimProizvod_ProductID'&#xA;                 AND object_id = OBJECT_ID(N'DW_GrocerySales.dbo.DimProizvod'))&#xA;    CREATE UNIQUE NONCLUSTERED INDEX UX_DimProizvod_ProductID&#xA;      ON DW_GrocerySales.dbo.DimProizvod (ProductID);&#xA;&#xA;IF NOT EXISTS (SELECT 1 FROM DW_GrocerySales.sys.indexes &#xA;               WHERE name = N'IX_DimProizvod_CategoryName'&#xA;                 AND object_id = OBJECT_ID(N'DW_GrocerySales.dbo.DimProizvod'))&#xA;    CREATE NONCLUSTERED INDEX IX_DimProizvod_CategoryName&#xA;      ON DW_GrocerySales.dbo.DimProizvod (CategoryName);&#xA;&#xA;-- 5) Vrati FK-ove na sve tabele koje imaju kolonu ProizvodSID (osim same dimenzije)&#xA;DECLARE @add NVARCHAR(MAX) = N'';&#xA;SELECT @add = @add + N'&#xA;IF NOT EXISTS (SELECT 1 FROM DW_GrocerySales.sys.foreign_keys &#xA;               WHERE name = N''FK_' + t.name + '_DimProizvod_ProizvodSID'')&#xA;BEGIN&#xA;  ALTER TABLE ' + QUOTENAME(s.name) + N'.' + QUOTENAME(t.name) + N'&#xA;    WITH NOCHECK ADD CONSTRAINT [FK_' + t.name + '_DimProizvod_ProizvodSID]&#xA;    FOREIGN KEY ([ProizvodSID]) &#xA;    REFERENCES [DW_GrocerySales].[dbo].[DimProizvod]([ProizvodSID]);&#xA;END&#xA;'&#xA;FROM DW_GrocerySales.sys.tables  t&#xA;JOIN DW_GrocerySales.sys.schemas s ON s.schema_id = t.schema_id&#xA;JOIN DW_GrocerySales.sys.columns c ON c.object_id = t.object_id&#xA;WHERE c.name = N'ProizvodSID'&#xA;  AND t.object_id &lt;&gt; OBJECT_ID(N'DW_GrocerySales.dbo.DimProizvod','U');&#xA;&#xA;IF (@add &lt;&gt; N'') EXEC DW_GrocerySales.sys.sp_executesql @add;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{84E8F05D-CE4C-4FB7-9CC2-C55B0A4A3320}"
+      DTS:From="Package\kreiranje tabele DimProizvod"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\ETL proces" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="131.2,41.6"
+          Id="Package\ETL proces"
+          TopLeft="239.999990463257,169.866668016646" />
+        <NodeLayout
+          Size="211.2,41.6"
+          Id="Package\kreiranje tabele DimProizvod"
+          TopLeft="190.833325750298,55.4666671074762" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="296.433325750298,97.0666671074762">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.166664712959,72.8000009091698"
+              Start="0,0"
+              End="9.166664712959,65.3000009091698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.4000004545849" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.4000004545849"
+                    Point2="0,36.4000004545849"
+                    Point3="4,36.4000004545849" />
+                  <mssgle:LineSegment
+                    End="5.166664712959,36.4000004545849" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.166664712959,36.4000004545849"
+                    Point2="9.166664712959,36.4000004545849"
+                    Point3="9.166664712959,40.4000004545849" />
+                  <mssgle:LineSegment
+                    End="9.166664712959,65.3000009091698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ETL proces">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="240.8,41.6"
+          Id="Package\ETL proces\upisivanje podataka u DimProizvod"
+          TopLeft="305.833321180609,220.133335082796" />
+        <NodeLayout
+          Size="311.2,41.6"
+          Id="Package\ETL proces\ucitavanje podataka iz tabela products i categories"
+          TopLeft="273.333322472043,61.5333338223563" />
+        <EdgeLayout
+          Id="Package\ETL proces.Paths[OLE DB Source Output]"
+          TopLeft="427.583321826326,103.133333822356">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,117.00000126044"
+              Start="0,0"
+              End="0,109.50000126044">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,109.50000126044" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL proces\ucitavanje podataka iz tabela products i categories">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL proces\upisivanje podataka u DimProizvod">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
